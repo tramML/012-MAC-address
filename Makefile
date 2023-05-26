@@ -26,11 +26,12 @@ venv/touchfile: requirements.txt
 	pip3 --isolated install -r requirements.txt
 	touch venv/touchfile
 
-format:
-	black
+format: actions/
+	black actions/
 
 lint: venv domain.yml data/
 	. venv/bin/activate
+	black actions/
 	rasa data validate
 
 train: venv domain.yml data/
@@ -45,7 +46,9 @@ run: venv domain.yml models/
 	. venv/bin/activate
 	rasa shell --debug
 
-clean:
-	rm -f *.yml
-	rm -rf actions/ data/ tests/ venv/
+act: venv actions/
+	. venv/bin/activate
+	rasa run actions
 
+clean:
+	rm -rf venv/

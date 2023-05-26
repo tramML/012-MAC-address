@@ -1,31 +1,33 @@
 version: "3.1"
 
 intents:
-  - greet
-  - goodbye
-  - affirm
-  - deny
-  - mood_great
-  - mood_unhappy
   - bot_challenge
+  - greet
+  - offer_mac_address
+
+actions:
+  - utter_query_mac_address
+
+slots:
+  mac_address:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_text
+        conditions:
+         - active_loop: mac_address_form
+           requested_slot: mac_address
+
+forms:
+  mac_address_form:
+    required_slots:
+      - mac_address
 
 responses:
-  utter_greet:
-  - text: "Hey! How are you?"
-
-  utter_cheer_up:
-  - text: "Here is something to cheer you up:"
-    image: "https://i.imgur.com/nGF1K8f.jpg"
-
-  utter_did_that_help:
-  - text: "Did that help you?"
-
-  utter_happy:
-  - text: "Great, carry on!"
-
-  utter_goodbye:
-  - text: "Bye"
-
+  utter_query_mac_address:
+  - text: "What's your MAC address?"
+  utter_mac_address:
+  - text: "The MAC address is '{mac_address}'."
   utter_iamabot:
   - text: "I am a bot, powered by Rasa."
 

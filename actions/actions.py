@@ -1,5 +1,4 @@
-from typing import Text, List, Any, Dict
-import re
+from typing import Text, Any, Dict
 
 from rasa_sdk import Tracker, FormValidationAction
 from rasa_sdk.executor import CollectingDispatcher
