@@ -17,9 +17,6 @@ install: venv
 	pip3 --isolated install -r requirements.txt
 	pip3 --isolated install --upgrade pip
 
-data/ domain.yml models/:
-	rasa init --no-prompt
-
 venv: venv/touchfile
 
 venv/touchfile: requirements.txt
