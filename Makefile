@@ -48,7 +48,7 @@ run: venv domain.yml models/
 
 act: venv actions/
 	. venv/bin/activate
-	rasa run actions
+	watchmedo auto-restart -d actions/ -p '*.py' rasa run actions
 
 clean:
 	rm -rf venv/
