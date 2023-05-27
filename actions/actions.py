@@ -19,7 +19,8 @@ class ValidateNameForm(FormValidationAction):
         tracker: Tracker,
         domain: DomainDict,
     ) -> Dict[Text, Any]:
-        """Validate `mac_address` value."""
+        """Validate the MAC address utterance."""
+        dispatcher.utter_message(text=f"slot value: {slot_value}")
 
         if (mac := get_mac(slot_value)) is not None:
             dispatcher.utter_message(text=f"Recognized MAC address '{mac}'")
