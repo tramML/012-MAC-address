@@ -8,6 +8,7 @@
 help:
 	@echo "usage:"
 	@echo "    make clean"
+	@echo "    make realclean"
 	@echo "    make install"
 	@echo "    make venv"
 	@echo "    make lint"
@@ -18,8 +19,12 @@ help:
 	@echo "    make zip"
 
 clean:
-	rm -rf venv/
 	rm -f *.zip
+	rm -rf models/ results/ .rasa/
+
+realclean:
+	make clean
+	rm -rf venv/
 
 install: venv
 	source venv/bin/activate
