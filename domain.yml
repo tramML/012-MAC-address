@@ -40,6 +40,7 @@ responses:
   utter_ask_mac_address:
   - text: "What's your MAC address?"
   - text: "Please enter your MAC address."
+  - text: "Enter your MAC address at the prompt."
   utter_mac_address:
   - text: "The MAC address is '{mac_address}'."
   utter_iamabot:
