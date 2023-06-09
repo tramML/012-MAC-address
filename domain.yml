@@ -42,6 +42,11 @@ responses:
   - text: "Please enter your MAC address."
   - text: "Enter your MAC address at the prompt."
   utter_mac_address:
+  - condition:
+    - type: slot
+      name: mac_address
+      value: null
+    text: "I don't have your MAC address."
   - text: "The MAC address is '{mac_address}'."
   utter_iamabot:
   - text: "I am a bot, powered by Rasa."

@@ -34,14 +34,16 @@ class ValidateMACAddressForm(FormValidationAction):
         if (mac := get_mac(slot_value)) is not None:
             dispatcher.utter_message(text=f"Recognized MAC address '{mac}'")
             return {"mac_address": mac}
+        else:
+            mac_failures += 1
 
         if mac_failures < MAX_FAILURES:
             dispatcher.utter_message(
                 text=f"I don't see a MAC address in '{slot_value}'"
             )
-            return {"mac_address": None, "mac_failures": mac_failures + 1}
+            return {"mac_address": None, "mac_failures": mac_failures}
 
-        # too many failures, use Arjaan's solution in
+        # too many failures, exit the form via Arjaan's solution in
         # https://forum.rasa.com/t/how-do-i-deactivate-a-form-during-validation/40169
         dispatcher.utter_message(text="I still don't see a MAC address.")
         dispatcher.utter_message(text="Please contact customer support at 555-1212.")
