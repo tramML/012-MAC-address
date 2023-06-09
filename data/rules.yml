@@ -13,6 +13,12 @@ rules:
   - action: mac_address_form
   - active_loop: mac_address_form
 
+- rule: Activate form another way
+  steps:
+  - intent: greet
+  - action: mac_address_form
+  - active_loop: mac_address_form
+
 - rule: Submit form
   condition:
   - active_loop: mac_address_form
@@ -23,3 +29,7 @@ rules:
     - requested_slot: null
   - action: utter_mac_address
 
+- rule: goodbye
+  steps:
+  - intent: goodbye
+  - action: action_restart
