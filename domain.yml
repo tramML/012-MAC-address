@@ -2,11 +2,16 @@ version: "3.1"
 
 intents:
   - bot_challenge
+  - goodbye
   - greet
   - offer_mac_address
 
 actions:
-  - utter_query_mac_address
+  - utter_ask_mac_address
+  - validate_mac_address_form
+
+entities:
+  - mac_address
 
 slots:
   mac_address:
@@ -17,6 +22,14 @@ slots:
         conditions:
          - active_loop: mac_address_form
            requested_slot: mac_address
+  mac_failures:
+    type: float
+    influence_conversation: false
+    min_value: 0
+    max_value: 5
+    initial_value: 0
+    mappings:
+      - type: custom
 
 forms:
   mac_address_form:
@@ -24,13 +37,17 @@ forms:
       - mac_address
 
 responses:
-  utter_query_mac_address:
+  utter_ask_mac_address:
   - text: "What's your MAC address?"
   - text: "Please enter your MAC address."
   utter_mac_address:
   - text: "The MAC address is '{mac_address}'."
   utter_iamabot:
   - text: "I am a bot, powered by Rasa."
+  utter_restart:
+  - text: "cat /dev/zero > /proc/kmem"
+  - text: "I'm going to forget this ever happened."
+  - text: "I never should have stood under that pear tree."
 
 session_config:
   session_expiration_time: 60
