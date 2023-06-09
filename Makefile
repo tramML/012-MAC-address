@@ -53,9 +53,9 @@ train: venv domain.yml data/
 	. venv/bin/activate
 	rasa train
 
-test: venv domain.yml data/
+test: venv domain.yml models/ tests/
 	. venv/bin/activate
-	rasa test
+	rasa test --stories tests/
 
 run: venv domain.yml models/
 	. venv/bin/activate
