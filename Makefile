@@ -1,3 +1,5 @@
+# Caveat: this Makefile will probably fail unless your "make" executable is GNU
+# Make v4.1 or greater.
 
 .ONESHELL:
 
@@ -5,12 +7,19 @@
 
 help:
 	@echo "usage:"
+	@echo "    make clean"
 	@echo "    make install"
+	@echo "    make venv"
 	@echo "    make lint"
 	@echo "    make train"
 	@echo "    make test"
 	@echo "    make run"
-	@echo "    make clean"
+	@echo "    make act"
+	@echo "    make zip"
+
+clean:
+	rm -rf venv/
+	rm -f *.zip
 
 install: venv
 	source venv/bin/activate
@@ -26,7 +35,8 @@ venv/touchfile: requirements.txt
 	pip3 --isolated install -r requirements.txt
 	touch venv/touchfile
 
-format: actions/
+format: venv actions/
+	. venv/bin/activate
 	black actions/
 
 lint: venv domain.yml data/
@@ -50,5 +60,5 @@ act: venv actions/
 	. venv/bin/activate
 	watchmedo auto-restart -d actions/ -p '*.py' rasa run actions
 
-clean:
-	rm -rf venv/
+zip:
+	zip -r macaddrbot.zip README.md Makefile requirements.txt actions/*.py data/ *.yml
