@@ -1,4 +1,5 @@
 black~=22.0
 rasa~=3.4
 websockets~=10.4
+pytest~=7.3.0
 watchdog[watchmedo]~=3.0
