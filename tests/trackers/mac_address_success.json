@@ -1,0 +1,35 @@
+{
+  "sender_id": "unit_test_user",
+  "slots": {
+    "mac_failures": 0
+  },
+  "latest_message": {
+    "intent": {},
+    "entities": [],
+    "metadata": {}
+  },
+  "latest_event_time": 1612422342.865033865,
+  "paused": false,
+  "events": [
+    {
+      "event": "action",
+      "timestamp": 1612422342.8649258614,
+      "name": "action_session_start",
+      "confidence": 1.0
+    },
+    {
+      "event": "session_started",
+      "timestamp": 1612422342.8649988174
+    },
+    {
+      "event": "action",
+      "timestamp": 1612422342.865033865,
+      "name": "action_listen"
+    }
+  ],
+  "active_loop": { "name": "form_mac_address" },
+  "latest_action": {
+    "action_name": "action_listen"
+  },
+  "latest_action_name": "action_listen"
+}

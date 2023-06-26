@@ -1,3 +1,4 @@
+import sys
 from typing import Text, Any, Dict
 
 from rasa_sdk import Tracker, FormValidationAction
@@ -30,6 +31,7 @@ class ValidateMACAddressForm(FormValidationAction):
         dispatcher.utter_message(text=f"slot value: {slot_value}")
         mac_failures = tracker.slots.get("mac_failures", 0)
         print(f"{slot_value=} {mac_failures=}")
+        sys.stderr.write(f"{slot_value=} {mac_failures=}")
 
         if (mac := get_mac(slot_value)) is not None:
             dispatcher.utter_message(text=f"Recognized MAC address '{mac}'")

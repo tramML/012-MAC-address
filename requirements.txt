@@ -1,5 +1,7 @@
 black~=22.0
-rasa~=3.4
-websockets~=10.4
+pytest-asyncio~=0.21.0
+pytest-sanic~=1.9.1
 pytest~=7.3.0
+rasa~=3.4
 watchdog[watchmedo]~=3.0
+websockets~=10.4

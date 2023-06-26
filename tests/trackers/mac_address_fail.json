@@ -1,8 +1,8 @@
 {
   "sender_id": "unit_test_user",
   "slots": {
-    "mac_address": null,
-    "mac_failures": 0
+    "mac_address": "aaaaaaa",
+    "mac_failures": 10
   },
   "latest_message": {
     "intent": {},
@@ -37,10 +37,7 @@
     }
   ],
   "latest_input_channel": null,
-  "active_loop": {
-    "form_mac_address":""
-
-  },
+  "active_loop": {},
   "latest_action": {
     "action_name": "action_listen"
   },

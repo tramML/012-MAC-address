@@ -46,7 +46,7 @@ format: venv actions/
 
 lint: venv domain.yml data/
 	. venv/bin/activate
-	black actions/
+	black actions/ tests/
 	rasa data validate
 
 train: venv domain.yml data/
