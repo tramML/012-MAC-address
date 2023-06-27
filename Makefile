@@ -34,7 +34,7 @@ install: venv
 venv: venv/touchfile
 
 venv/touchfile: requirements.txt
-	test -d venv || python3.8 -m venv venv
+	test -d venv || python3.9 -m venv venv
 	source venv/bin/activate
 	pip3 --isolated install --upgrade pip
 	pip3 --isolated install -r requirements.txt
@@ -43,11 +43,14 @@ venv/touchfile: requirements.txt
 format: venv actions/
 	. venv/bin/activate
 	black actions/ tests/
+	isort actions/ tests/
 
 lint: venv domain.yml data/
 	. venv/bin/activate
 	black actions/ tests/
 	rasa data validate
+
+models/: train
 
 train: venv domain.yml data/
 	. venv/bin/activate

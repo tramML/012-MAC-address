@@ -1,15 +1,16 @@
+import json
 import os
 from pathlib import Path
+
 import pytest
-import json
 import sqlalchemy as sa
-
-from rasa_sdk.executor import CollectingDispatcher
-from rasa_sdk import Tracker
 from rasa.shared.core.domain import Domain
+from rasa_sdk import Tracker
+from rasa_sdk.executor import CollectingDispatcher
+from rasa_sdk.types import DomainDict
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def dispatcher():
     return CollectingDispatcher()
 

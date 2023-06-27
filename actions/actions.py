@@ -1,10 +1,9 @@
 import sys
-from typing import Text, Any, Dict
+from typing import Any, Dict, Text
 
-from rasa_sdk import Tracker, FormValidationAction
+from rasa_sdk import FormValidationAction, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.types import DomainDict
-
 
 from actions import get_mac
 
@@ -25,6 +24,8 @@ class ValidateMACAddressForm(FormValidationAction):
         domain: DomainDict,
     ) -> Dict[Text, Any]:
         """Validate the MAC address utterance."""
+
+        #       import pdb; pdb.set_trace()
 
         MAX_FAILURES = 3
 
