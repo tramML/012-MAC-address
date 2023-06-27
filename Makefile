@@ -42,7 +42,7 @@ venv/touchfile: requirements.txt
 
 format: venv actions/
 	. venv/bin/activate
-	black actions/
+	black actions/ tests/
 
 lint: venv domain.yml data/
 	. venv/bin/activate

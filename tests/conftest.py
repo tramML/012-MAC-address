@@ -9,7 +9,6 @@ from rasa_sdk import Tracker
 from rasa.shared.core.domain import Domain
 
 
-
 @pytest.fixture
 def dispatcher():
     return CollectingDispatcher()
@@ -24,3 +23,8 @@ def tracker():
 def domain() -> Domain:
     path = Path(__file__).parent.parent.resolve() / "domain.yml"
     return Domain.from_path(path)
+
+
+@pytest.fixture(scope="session")
+def domaindict(domain) -> DomainDict:
+    return domain.as_dict()
