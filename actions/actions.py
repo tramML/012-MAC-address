@@ -7,6 +7,7 @@ from rasa_sdk.types import DomainDict
 
 from actions import get_mac
 
+MAX_VALIDATION_FAILURES = 3
 
 class ValidateMACAddressForm(FormValidationAction):
     """
@@ -25,10 +26,6 @@ class ValidateMACAddressForm(FormValidationAction):
     ) -> Dict[Text, Any]:
         """Validate the MAC address utterance."""
 
-        #       import pdb; pdb.set_trace()
-
-        MAX_FAILURES = 3
-
         dispatcher.utter_message(text=f"slot value: {slot_value}")
         mac_failures = tracker.slots.get("mac_failures", 0)
         print(f"{slot_value=} {mac_failures=}")
@@ -40,7 +37,7 @@ class ValidateMACAddressForm(FormValidationAction):
         else:
             mac_failures += 1
 
-        if mac_failures < MAX_FAILURES:
+        if mac_failures < MAX_VALIDATION_FAILURES:
             dispatcher.utter_message(
                 text=f"I don't see a MAC address in '{slot_value}'"
             )
