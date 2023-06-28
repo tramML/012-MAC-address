@@ -65,6 +65,8 @@ def tracker():
 @pytest.mark.asyncio
 async def test_validate_mac_address_form_fail(dispatcher, tracker, domaindict):
     form = actions.ValidateMACAddressForm()
+    assert tracker.get_slot("mac_address") == None
+    assert tracker.get_slot("mac_failures") == 0
     evt_actual = await form.run(dispatcher, tracker, domaindict)
     assert tracker.get_slot("mac_address") == None
     assert tracker.get_slot("mac_failures") == 1
