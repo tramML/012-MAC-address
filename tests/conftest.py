@@ -1,9 +1,6 @@
-import json
-import os
 from pathlib import Path
 
 import pytest
-import sqlalchemy as sa
 from rasa.shared.core.domain import Domain
 from rasa_sdk import Tracker
 from rasa_sdk.executor import CollectingDispatcher

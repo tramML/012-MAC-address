@@ -14,6 +14,7 @@ help:
 	@echo "    make lint"
 	@echo "    make train"
 	@echo "    make test"
+	@echo "    make test-stories"
 	@echo "    make run"
 	@echo "    make act"
 	@echo "    make zip"
@@ -47,7 +48,7 @@ format: venv actions/
 
 lint: venv domain.yml data/
 	. venv/bin/activate
-	black actions/ tests/
+	ruff check actions/ tests/
 	rasa data validate
 
 models/: train
@@ -58,8 +59,11 @@ train: venv domain.yml data/
 
 test: venv domain.yml models/ tests/
 	. venv/bin/activate
-	rasa test --stories tests/
 	pytest tests/
+
+test-stories:
+	. venv/bin/activate
+	rasa test --stories tests/
 
 run: venv domain.yml models/
 	. venv/bin/activate

@@ -9,6 +9,7 @@ from actions import get_mac
 
 MAX_VALIDATION_FAILURES = 3
 
+
 class ValidateMACAddressForm(FormValidationAction):
     """
     Form is 'mac_address_form', slot is 'mac_address'.

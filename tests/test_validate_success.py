@@ -1,10 +1,6 @@
-import json
-from pathlib import Path
-
 import pytest
-from rasa_sdk.events import ActionExecuted, SessionStarted, SlotSet
-from rasa_sdk.executor import CollectingDispatcher, Tracker
-from rasa_sdk.types import DomainDict
+from rasa_sdk.events import SlotSet
+from rasa_sdk.executor import Tracker
 
 from actions import actions
 
@@ -53,7 +49,6 @@ def tracker():
         ],
         "latest_action_name": "mac_address_form",
         "sender_id": "unit_test_user",
-        "slots": {"mac_failures": 0, "mac_address": None},
         "latest_message": {
             "text": "11:22:33:44:55:66",
         },
@@ -71,8 +66,9 @@ def tracker():
 @pytest.mark.asyncio
 async def test_validate_mac_address_form_success(dispatcher, tracker, domaindict):
     form = actions.ValidateMACAddressForm()
-    assert tracker.get_slot("mac_address") == None
+    assert tracker.get_slot("mac_address") is None
     assert tracker.get_slot("mac_failures") == 0
     evt_actual = await form.run(dispatcher, tracker, domaindict)
     assert tracker.get_slot("mac_address") == "11:22:33:44:55:66"
     assert tracker.get_slot("mac_failures") == 0
+    assert evt_actual == [SlotSet("mac_address", "11:22:33:44:55:66")]
