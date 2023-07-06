@@ -58,6 +58,7 @@ def tracker():
 
 
 @pytest.mark.asyncio
+@pytest.mark.filterwarnings("ignore:Slot auto-fill has been removed")
 async def test_validate_mac_address_form_fail(dispatcher, tracker, domaindict):
     form = actions.ValidateMACAddressForm()
     assert tracker.get_slot("mac_address") is None

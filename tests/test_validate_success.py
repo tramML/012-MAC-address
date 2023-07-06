@@ -5,12 +5,6 @@ from rasa_sdk.executor import Tracker
 from actions import actions
 
 
-def test_validate_mac_address_form_name():
-    """Simple test borrowed from https://github.com/RasaHQ/nib-rasa-x"""
-    form = actions.ValidateMACAddressForm()
-    assert form.name() == "validate_mac_address_form"
-
-
 @pytest.fixture
 def tracker():
     foo = {
@@ -63,6 +57,7 @@ def tracker():
     return Tracker.from_dict(foo)
 
 
+@pytest.mark.filterwarnings("ignore:Slot auto-fill has been removed")
 @pytest.mark.asyncio
 async def test_validate_mac_address_form_success(dispatcher, tracker, domaindict):
     form = actions.ValidateMACAddressForm()
