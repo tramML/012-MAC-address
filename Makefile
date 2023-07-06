@@ -3,7 +3,7 @@
 
 .ONESHELL:
 
-.PHONY: help clean install test
+.PHONY: help clean realclean format lint install test train run act zip
 
 help:
 	@echo "usage:"
@@ -57,9 +57,9 @@ train: venv domain.yml data/
 	. venv/bin/activate
 	rasa train
 
-test: venv domain.yml models/ tests/
+test: venv
 	. venv/bin/activate
-	pytest tests/
+	pytest -vvv tests/
 
 test-stories:
 	. venv/bin/activate
